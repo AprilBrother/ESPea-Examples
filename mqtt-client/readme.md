@@ -8,5 +8,6 @@ The example show how to coneect MQTT broker and subscribe a topic. It can also w
 * Install library [PubSubClient](https://github.com/Imroy/pubsubclient). 
  * Download [zip file](https://github.com/Imroy/pubsubclient/archive/master.zip)
  * Install the library "Sketch -> Include Library -> Add .ZIP library"
+* Change the SSID and password to yours
 * Upload the sketch
 * Open serial monitor (baud rate: 115200) and see messages from MQTT broker
