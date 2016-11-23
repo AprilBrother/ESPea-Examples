@@ -1,6 +1,6 @@
 ## Description
 
-The example show how to coneect MQTT broker and subscribe a topic. It can also work with our [WiFi iBeacon Receiver](https://blog.aprbrother.com/product/wifi-ibeacon-receiver)
+The example shows how to coneect MQTT broker and subscribe a topic. It can also work with our [WiFi iBeacon Receiver](https://blog.aprbrother.com/product/wifi-ibeacon-receiver)
 
 ##  How To Start
 
