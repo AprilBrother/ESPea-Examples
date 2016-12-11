@@ -20,15 +20,21 @@ long unlockedTime = 0;
 
 void handleQuery() {
     char rsp[255];
-    sprintf(rsp, "{\"state\":\"%s\",\"statusCode\":200}", digitalRead(RELAY_PIN) ? "locked" : "unlocked");
+    sprintf(rsp, "{\"state\":\"%s\",\"statusCode\":200}", digitalRead(RELAY_PIN) ? "unlocked" : "locked");
     server.send(200, "text/plain", rsp);
 }
 
 void handleLock() {
-    digitalWrite(RELAY_PIN, 1);
-    // Lock again after 3 seconds
-    unlockedTime = millis();
-    server.send(200, "text/plain", "{\"battery\":100,\"statusCode\":200}");
+    String state = server.arg("state");
+    if (state == "locked") {
+      digitalWrite(RELAY_PIN, 0);
+    } else {
+      // There's a bug for ESP8266 Arduino core version 2.3.0 that it can't get param state
+      digitalWrite(RELAY_PIN, 1);
+      // Lock again after 3 seconds
+      unlockedTime = millis();
+    }
+    server.send(200, "text/plain", "{\"battery\":100,\"statusCode\":200}");           
 }
 
 void setup() {
@@ -36,6 +42,7 @@ void setup() {
     pinMode(RELAY_PIN, OUTPUT);
     WiFi.begin(ssid, password);
 
+    Serial.println("");
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         Serial.print(".");
