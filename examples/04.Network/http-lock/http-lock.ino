@@ -40,6 +40,7 @@ void handleLock() {
 void setup() {
     Serial.begin(115200);
     pinMode(RELAY_PIN, OUTPUT);
+    WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
 
     Serial.println("");
