@@ -20,7 +20,8 @@ long unlockedTime = 0;
 
 void handleQuery() {
     char rsp[255];
-    sprintf(rsp, "{\"state\":\"%s\",\"statusCode\":200}", digitalRead(RELAY_PIN) ? "unlocked" : "locked");
+    sprintf(rsp, "{\"state\":\"%s\",\"statusCode\":200,\"battery\":100}", digitalRead(RELAY_PIN) ? "unlocked" : "locked");
+
     server.send(200, "text/plain", rsp);
 }
 
